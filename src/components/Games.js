@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
+import GameContext from '../context/games/GameContext';
 
-const Games = () => {
-    const [games, setGames] = useState([]);
-
-    const fetchData = async () => {
-        const url = "https://s3-ap-southeast-1.amazonaws.com/he-public-data/gamesarena274f2bf.json";
-        let data = await fetch(url);
-        let parsedData = await data.json();
-        setGames(parsedData)
-    }
+const Games = (props) => {
+    const context = useContext(GameContext);
+    const { games, fetchData } = context;
 
     useEffect(() => {
         fetchData();
         //eslint-disable-next-line
     }, [])
 
-    const lowerCase = str => {
-        return str.charAt(0).toLowerCase() + str.slice(1);
-    };
+    const filteredData = games.filter((ele) => {
+        if (props.query === '') {
+            return ele;
+        }
+        else {
+            return ele.title.toLowerCase().includes(props.query);
+        }
+    })
 
     return (
         <div className='container my-4'>
             <div className="container row">
-                {games.slice(1).map((element) => {
+                {filteredData.map((element) => {
                     return <div className="my-2 col-md-3" key={element.title + element.platform}>
                         <div className="card">
                             <div className="card-body">
@@ -43,7 +43,7 @@ const Games = () => {
                                 }
                                 <span className="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-dark">{element.genre}</span>
                                 <span className="badge bg-danger rounded-pill" style={{ float: "right" }}>{element.score}</span>
-                                <p className='card-text mt-2'>{element.title} is a {lowerCase(element.genre)} game. It is compatible with {element.platform} and scores {element.score}/10 in our review.</p>
+                                <p className='card-text mt-2'>{element.title} is a {element.genre} game. It is compatible with {element.platform} and scores {element.score}/10 in our review.</p>
                             </div>
                         </div>
                     </div>
