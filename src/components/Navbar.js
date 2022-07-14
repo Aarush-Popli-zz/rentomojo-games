@@ -4,7 +4,7 @@ import GameContext from '../context/games/GameContext';
 
 const Navbar = (props) => {
     const context = useContext(GameContext);
-    const { sortDataName, sortDataScores, editorsChoice, gotoDefault } = context;
+    const { sortDataName, sortDataScores, editorsChoice, gotoDefault, filteredGenre } = context;
     const [inputText, setInputText] = useState("");
     
     const inputHandler = (e) => {
@@ -47,22 +47,22 @@ const Navbar = (props) => {
                                 Genre
                             </Link>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Platformer</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Puzzle</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Sports</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Strategy</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Fighting</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>RPG</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Action</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Adventure</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Shooter</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Music</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Board</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Racing</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Action & Adventure</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Action & RPG</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Strategy & RPG</Link></li>
-                                <li><Link className="dropdown-item" to="/" onClick={() => { sortDataName() }}>Racing & Action</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Platformer") }}>Platformer</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Puzzle") }}>Puzzle</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Sports") }}>Sports</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Strategy") }}>Strategy</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Fighting") }}>Fighting</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("RPG") }}>RPG</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Action") }}>Action</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Adventure") }}>Adventure</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Shooter") }}>Shooter</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Music") }}>Music</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Board") }}>Board</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Racing") }}>Racing</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Action, Adventure") }}>Action & Adventure</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Action, RPG") }}>Action & RPG</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Strategy, RPG") }}>Strategy & RPG</Link></li>
+                                <li><Link className="dropdown-item" to="/" onClick={() => { filteredGenre("Racing, Action") }}>Racing & Action</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item">

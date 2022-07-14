@@ -21,7 +21,7 @@ const GameState = (props) => {
     }
 
     const sortDataName = () => {
-        const sortedData = [...games]
+        const sortedData = [...initial]
         sortedData.sort((a, b) => compareText(a.title, b.title));
         setGames(sortedData);
     }
@@ -31,13 +31,13 @@ const GameState = (props) => {
     }
 
     const sortDataScores = () => {
-        const sortedData = [...games]
+        const sortedData = [...initial]
         sortedData.sort((a, b) => compareNumbers(a.score, b.score));
         setGames(sortedData);
     }
 
     const editorsChoice = () => {
-        let eChoice = games.filter(ele => ele.editors_choice === "Y")
+        let eChoice = initial.filter(ele => ele.editors_choice === "Y")
         setGames(eChoice)
     }
 
@@ -45,8 +45,13 @@ const GameState = (props) => {
         setGames(initial);
     }
 
+    const filteredGenre = (g) => {
+        let getGenre = initial.filter(ele => ele.genre === g)
+        setGames(getGenre)
+    }
+
     return (
-        <GameContext.Provider value={{ games, fetchData, sortDataName, sortDataScores, editorsChoice, gotoDefault }}>
+        <GameContext.Provider value={{ games, fetchData, sortDataName, sortDataScores, editorsChoice, gotoDefault, filteredGenre }}>
             {props.children}
         </GameContext.Provider>
     )
