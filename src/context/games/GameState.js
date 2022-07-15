@@ -6,7 +6,7 @@ const GameState = (props) => {
     const [initial, setInitial] = useState([])
 
     const fetchData = async () => {
-        const url = "https://s3-ap-southeast-1.amazonaws.com/he-public-data/gamesarena274f2bf.json";
+        const url = process.env.REACT_APP_API_LINK;
         let data = await fetch(url);
         let parsedData = await data.json();
         

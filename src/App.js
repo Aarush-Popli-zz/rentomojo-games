@@ -18,7 +18,7 @@ function App() {
   }
   return (
     <>
-      <GameState query={search}>
+      <GameState>
         <Router>
           <Navbar func={get_data} />
           <Routes>
