@@ -9,10 +9,23 @@ const GameState = (props) => {
         const url = "https://s3-ap-southeast-1.amazonaws.com/he-public-data/gamesarena274f2bf.json";
         let data = await fetch(url);
         let parsedData = await data.json();
-        setGames(parsedData.slice(1));
-        setInitial(parsedData.slice(1));
-    }
+        
+        let setData = [];
+        parsedData.slice(1).forEach((e) => {
+            if (setData[e.title] !== undefined) {
+                setData[e.title].platform = [...setData[e.title].platform, ", ", ...e.platform]
+                setData[e.title].platform = setData[e.title].platform.join("")
+            }
+            else {
+                setData[e.title] = e;
+            }
+        });
+        var cleanData = Object.values(setData);
 
+        setGames(cleanData);
+        setInitial(cleanData);
+    }
+    
     const compareText = (a, b) => {
         a = a.toLowerCase();
         b = b.toLowerCase();
@@ -26,32 +39,39 @@ const GameState = (props) => {
         setGames(sortedData);
     }
 
-    const compareNumbers = (a, b) => {
-        return (a > b) ? -1 : (a < b) ? 1 : 0;
+    const sortDataScoresAsc = () => {
+        const sortedData = [...initial]
+        sortedData.sort((a, b) => (a.score < b.score) ? -1 : (a.score > b.score) ? 1 : 0);
+        setGames(sortedData);
     }
 
-    const sortDataScores = () => {
+    const sortDataScoresDes = () => {
         const sortedData = [...initial]
-        sortedData.sort((a, b) => compareNumbers(a.score, b.score));
+        sortedData.sort((a, b) => (a.score > b.score) ? -1 : (a.score < b.score) ? 1 : 0);
         setGames(sortedData);
     }
 
     const editorsChoice = () => {
-        let eChoice = initial.filter(ele => ele.editors_choice === "Y")
+        let eChoice = games.filter(ele => ele.editors_choice === "Y")
         setGames(eChoice)
     }
 
-    const gotoDefault = ()=>{
+    const gotoDefault = () => {
         setGames(initial);
     }
 
     const filteredGenre = (g) => {
-        let getGenre = initial.filter(ele => ele.genre === g)
+        let getGenre = initial.filter(ele => ele.genre.includes(g))
         setGames(getGenre)
     }
 
+    const filteredPlatform = (g) => {
+        let getPlatform = initial.filter(ele => ele.platform.includes(g))
+        setGames(getPlatform)
+    }
+
     return (
-        <GameContext.Provider value={{ games, fetchData, sortDataName, sortDataScores, editorsChoice, gotoDefault, filteredGenre }}>
+        <GameContext.Provider value={{ games, fetchData, sortDataName, sortDataScoresAsc, sortDataScoresDes, editorsChoice, gotoDefault, filteredGenre, filteredPlatform }}>
             {props.children}
         </GameContext.Provider>
     )

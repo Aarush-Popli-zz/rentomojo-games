@@ -6,7 +6,7 @@ const About = () => {
         <div className='container my-4'>
             <div className="container-fluid">
                 <h1 className="display-5 fw-bold">About</h1>
-                <p className="fs-4">This is an assignment given by  <a className='text-dark' href='https://www.rentomojo.com/'>RentoMojo</a> for a front-end developer role. This website is made using React JS.</p>
+                <p className="fs-4">It is a website that helps you search for games to play. This is an assignment given by  <a className='text-dark' href='https://www.rentomojo.com/'>RentoMojo</a> for a front-end developer role. This website is made using React JS.</p>
             </div>
         </div>
 
