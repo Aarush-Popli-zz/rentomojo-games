@@ -19,9 +19,12 @@ const Navbar = (props) => {
     let location = useLocation();
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark sticky-top" style={{ backgroundColor: "rgb(11, 17, 32, 0.75)", backdropFilter: "blur(10px)"}}>
             <div className="container-fluid">
-                <Link className="navbar-brand" to="/" onClick={() => { gotoDefault() }}>GameSearch</Link>
+                <Link className="navbar-brand" to="/" onClick={() => { gotoDefault() }}>
+                    <img src="/logo192.png" alt="" width="30" height="24" />
+                    GameSearch
+                </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
