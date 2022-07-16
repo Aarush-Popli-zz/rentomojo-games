@@ -20,7 +20,7 @@ const Games = (props) => {
     })
 
     return (
-        <div className='container mt-4 mb-2'>
+        <div className='container my-4'>
             <div className="container row">
                 {filteredData.map((element) => {
                     return <div className="my-2 col-md-3" key={element.title + element.platform}>
